@@ -1,0 +1,72 @@
+﻿@model MovieStoreApp.Models.DTO.Movie
+
+@{
+    ViewData["Title"] = "Details";
+}
+<style>
+    p {
+        white-space: pre-wrap;
+        word-wrap: break-word; 
+        max-width: 50ch; 
+</style>
+<h1>Details</h1>
+
+<div>
+    <h4>Movie</h4>
+    <hr />
+    <img src="~/Images/Movies/@(string.IsNullOrEmpty(Model.Image)?"Empty.jpg":Model.Image)" width="200" />
+   
+    <dl class="row">
+        
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Director)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Director)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ReleaseYear)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ReleaseYear)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+       
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Categories)
+        </dt>
+        
+        <dd class="col-sm-10">
+                @foreach (var category in Model.Categories)
+               {
+            @Html.DisplayFor(model => category.Name)
+                }
+        </dd>
+        
+        <dt >
+            @Html.DisplayNameFor(model => model.Description) :
+        </dt>
+        <dd >
+            <p >
+                @Html.DisplayFor(model => model.Description)
+            </p>
+        </dd>
+           
+        </dd>
+    </dl>
+</div>
+<div>
+   
+    <a asp-action="Index">Back to List</a>
+</div>

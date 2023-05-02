@@ -1,0 +1,43 @@
+﻿@model IEnumerable<MovieStoreApp.Models.DTO.Movie>
+@using MovieStoreApp.Models.Enums;
+<head>
+    <style>
+        .movie-poster {
+           
+            margin-right: 100rem;
+        }
+
+       
+    </style>
+    
+</head>
+
+<div class="container px-4 py-5" id="featured-3">
+    <h2 class="pb-2 border-bottom">Featured Movies</h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        @foreach (var movie in Model)
+        {
+            <div class="feature col">
+                <div class="feature-icon d-inline-flex align-items-center ">
+                    <svg class="bi" width="1em" height="1em"><use xlink:href="#collection" /></svg>
+                </div>
+                <div>
+                <img class="movie-poster" src="~/Images/Movies/@(string.IsNullOrEmpty(movie.Image)?"Empty.jpg":movie.Image)" width="250" height="200" alt="Movie poster" />
+                </div>
+                <div>
+                 <br>
+                <h3 class="fs-2">@movie.Title</h3>
+                <p>Director: @movie.Director</p>
+                <p>@movie.Description</p>
+               
+                <p>Price: $@movie.Price</p>
+                <a href="@Url.Action("Details", "Movie", new { id = movie.Id })" >
+                    View Details
+                   
+                </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

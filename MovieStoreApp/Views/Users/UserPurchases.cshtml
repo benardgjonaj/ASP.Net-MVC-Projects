@@ -1,0 +1,51 @@
+﻿<div class="container">
+    <h1>@Model.UserName's Purchases</h1>
+
+    @if (Model.Purchases.Count > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Counter</th>
+                    <th>CreatedDate</th>
+                    <th>Description</th>
+                    <th>Movies</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var counter = 1;
+                    }
+                @foreach (var purchase in Model.Purchases)
+                {
+                   
+                    <tr>
+                        <td>@counter</td>
+                        <td>@purchase.CreatedDate</td>
+                        <td>@purchase.Description</td>
+                        <td>
+                            @if (purchase.Movies.Count > 0)
+                            {
+                                <ul>
+                                    @foreach (var movie in purchase.Movies)
+                                    {
+                                        <li>@movie.Title - $@movie.Price.ToString("0.00")</li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                <p>No movies found.</p>
+                            }
+                        </td>
+                    </tr>
+                    counter++;
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No purchases found.</p>
+    }
+</div>

@@ -1,0 +1,34 @@
+﻿@model MovieStoreApp.Models.DTO.Category
+@foreach (var categoryWithMovies in Model.CategoriesWithMovies)
+{
+    <div class="col-md-6">
+        <div class="card ">
+            <div class="card-header bg-primary text-white">
+                <h4>@categoryWithMovies.Category.Name</h4>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <table>
+                    @foreach (var movie in categoryWithMovies.Movies)
+                    {<div>
+                        <tr>
+                                <td>
+
+                                    <img src="~/Images/Movies/@(string.IsNullOrEmpty(movie.Image)?"Empty.jpg":movie.Image)" width="100" />
+                                </td>
+                                </tr>
+                                <tr>
+                            <td> @movie.Title</td>
+                            <td>@movie.Description</td>
+                            <td>@movie.ReleaseYear</td>
+                            <td>@movie.Price</td>
+                               
+                        </tr>
+                        </div>
+                    }
+                    </table>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
