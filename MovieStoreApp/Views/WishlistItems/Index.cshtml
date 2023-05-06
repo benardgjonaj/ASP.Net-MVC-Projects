@@ -1,0 +1,94 @@
+﻿@model IEnumerable<MovieStoreApp.Models.DTO.WishlistItem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+    var counter = 1;
+}
+
+<style>
+    table {
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: separate;
+    }
+
+    th, td {
+        width: 140px;
+        border: inherit;
+        padding: 5px;
+        text-align: left;
+    }
+</style>
+<h1>Wishlist</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Counter
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie.Director)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Movie.ReleaseYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie.Description)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @counter
+                </td>
+                <td>
+
+                    <img src="~/Images/Movies/@(string.IsNullOrEmpty(item.Movie.Image)?"Empty.jpg":item.Movie.Image)" width="100" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Movie.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Movie.Director)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Movie.ReleaseYear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Movie.Price)
+                </td>
+                <td style="word-wrap: break-word;">
+                    @item.Movie.Description
+                </td>
+
+                <td>
+
+                    <a asp-action="Details" asp-controller="Users" asp-route-id="@item.Movie.Id" class="btn btn-primary mx-1"><i class="bi bi-info-circle" mx-2"></i>Details</a>
+
+                </td>
+            </tr>
+            counter++;
+        }
+    </tbody>
+</table>
+
